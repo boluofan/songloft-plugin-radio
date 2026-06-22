@@ -14,8 +14,8 @@
     "storage",
     "playlists.read"
   ],
-  "updateUrl": "",
-  "download_url": "",
+  "updateUrl": "https://github.com/songloft-org/songloft-plugin-radio/raw/main/plugin.json",
+  "download_url": "https://github.com/songloft-org/songloft-plugin-radio/releases/latest/download/radio.jsplugin.zip",
   "entryHash": "",
   "zipHash": ""
 }
