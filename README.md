@@ -22,8 +22,8 @@ npm run validate    # verify plugin.json hashes
 
 ## Author
 
-hanxi
+Songloft Team
 
 ## License
 
-Apache-2.0 © 2026 hanxi
+Apache-2.0 © 2026 Songloft Team
