@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>电台导入</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 导入源卡片 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="material-symbols-outlined">radio</span>
+                导入电台
+            </div>
+            <div class="card-body">
+                <div class="import-row">
+                    <input type="file" id="fileInput" accept=".m3u,.m3u8,.txt" hidden>
+                    <button class="btn-outlined" id="btn-file">
+                        <span class="material-symbols-outlined">upload_file</span>
+                        选择文件
+                    </button>
+                    <span id="file-name" class="file-name">未选择文件</span>
+                </div>
+                <div class="divider-text">或</div>
+                <div class="import-row">
+                    <div class="text-field-wrapper" style="flex:1">
+                        <span class="material-symbols-outlined">link</span>
+                        <input type="text" id="urlInput" placeholder="输入 M3U/M3U8 文件 URL...">
+                    </div>
+                    <button class="btn-filled btn-sm" id="btn-fetch">
+                        <span class="material-symbols-outlined">download</span>
+                        获取
+                    </button>
+                </div>
+                <div class="form-hint">
+                    支持 .m3u / .m3u8 格式的电台频道列表。
+                    找不到电台资源？试试
+                    <a href="https://github.com/junguler/m3u-radio-music-playlists" target="_blank" rel="noopener">
+                        m3u-radio-music-playlists</a>，复制文件的 Raw URL 粘贴到上方即可导入。
+                </div>
+            </div>
+        </div>
+
+        <!-- 预览卡片 -->
+        <div class="card" id="preview-card" style="display:none">
+            <div class="card-header">
+                <span class="material-symbols-outlined">list</span>
+                预览
+                <span id="station-count" class="chip">0 个电台</span>
+            </div>
+            <div class="toolbar">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" class="cb" id="select-all" checked>
+                    <span style="font-size:13px">全选</span>
+                </label>
+                <span class="toolbar-info" id="selected-info">已选 0 个</span>
+                <div style="flex:1"></div>
+                <select id="playlist-select" class="select-field"></select>
+                <button class="btn-outlined btn-sm" id="btn-new-playlist">
+                    <span class="material-symbols-outlined">add</span>
+                    新建歌单
+                </button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:36px"></th>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>分组</th>
+                        </tr>
+                    </thead>
+                    <tbody id="station-tbody"></tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <button class="btn-filled" id="btn-import" disabled>
+                    <span class="material-symbols-outlined">download</span>
+                    导入选中电台
+                </button>
+            </div>
+        </div>
+
+        <!-- 结果卡片 -->
+        <div class="card" id="result-card" style="display:none">
+            <div class="card-header">
+                <span class="material-symbols-outlined">check_circle</span>
+                导入结果
+            </div>
+            <div class="card-body" id="result-body"></div>
+        </div>
+    </div>
+
+    <!-- 新建歌单对话框 -->
+    <div id="dialogOverlay" class="dialog-overlay" style="display:none">
+        <div class="dialog">
+            <div class="dialog-title">新建电台歌单</div>
+            <div class="dialog-content">
+                <input type="text" class="text-field" id="new-playlist-name" placeholder="歌单名称">
+            </div>
+            <div class="dialog-actions">
+                <button class="btn-text" id="dialog-cancel">取消</button>
+                <button class="btn-filled btn-sm" id="dialog-confirm">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snackbar -->
+    <div id="snackbar" class="snackbar"></div>
+
+    <script src="static/js/app.js"></script>
+</body>
+</html>
